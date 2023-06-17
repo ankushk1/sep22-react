@@ -7,9 +7,10 @@ const StateComp = () => {
   // const [num, setNum] = useState(5)
 
   function increase() {
-    setIndex(index + 1);
-    setIndex((prevState) => prevState + 1); // 1
+    // setIndex(index + 1);
+    // setIndex((prevState) => prevState + 1); // 1
     // setIndex((prevState) => prevState + 1); // 2
+    index += 1;
   }
 
   // const increaseNum = (incrementer) => {
