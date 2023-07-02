@@ -8,16 +8,37 @@ import {
   CardText,
   Spinner
 } from "reactstrap";
+import RenderData from "./RenderData";
 const ApiComp = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("products");
   const [loading, setLoading] = useState(false);
 
+  const filterData = (json) => {
+    // if(filter === "products") {
+    //   return json.products
+    // } else if( filter === "users") {
+    //   return json.users
+    // }
+
+    // :TODO -- Add a new route and render its data
+    switch (filter) {
+      case "products":
+        return json.products;
+      case "users":
+        return json.users;
+      case "quotes":
+        return json.quotes;
+      default:
+        return;
+    }
+  };
+
   async function fetchData() {
     setLoading(true);
     const data = await fetch(`https://dummyjson.com/${filter}`);
     const json = await data.json();
-    setData(filter === "products" ? json.products : json.users);
+    setData(filterData(json));
     setLoading(false);
   }
 
@@ -30,22 +51,35 @@ const ApiComp = () => {
     // })();
   }, [filter]);
 
-  console.log(data);
-
   return (
     <div>
-      <div className="fs-2 mb-4">ApiComp</div>
+      {/* <div className="fs-2 mb-4">ApiComp</div> */}
       <div className="mt-3 mb-4">
         <Button
           color="primary"
           size="lg"
           className="me-3"
+          outline={filter !== "products"}
           onClick={() => setFilter("products")}
         >
           Products
         </Button>
-        <Button color="success" size="lg" onClick={() => setFilter("users")}>
+        <Button
+          className="me-3"
+          color="success"
+          size="lg"
+          onClick={() => setFilter("users")}
+          outline={filter !== "users"}
+        >
           Users
+        </Button>
+        <Button
+          color="info"
+          size="lg"
+          onClick={() => setFilter("quotes")}
+          outline={filter !== "quotes"}
+        >
+          Quotes
         </Button>
       </div>
       {loading ? (
@@ -59,24 +93,7 @@ const ApiComp = () => {
           {data.length > 0 &&
             data.slice(0, 10).map((elem, idx) => (
               <div key={idx}>
-                <Card
-                  className="border border-dark mb-4"
-                  style={{
-                    width: "18rem",
-                    height: "28rem"
-                  }}
-                >
-                  <img alt="Sample" src={elem.thumbnail || elem.image} />
-                  <CardBody>
-                    <CardTitle tag="h5">
-                      {elem.title || `${elem.firstName} ${elem.lastName}`}
-                    </CardTitle>
-                    <CardSubtitle className="mb-2 text-muted" tag="h6">
-                      {elem.price || elem.email}
-                    </CardSubtitle>
-                    <CardText>{elem.description || elem.phone}</CardText>
-                  </CardBody>
-                </Card>
+                <RenderData elem={elem} filter={filter} />
               </div>
             ))}
         </div>

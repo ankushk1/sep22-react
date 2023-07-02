@@ -10,6 +10,7 @@ import ChildComp1 from "./Components/ChildComp1";
 import { createContext, useState } from "react";
 import UseEffectComp from "./Components/UseEffectComp";
 import ApiComp from "./Components/ApiComp";
+import FormComp from "./Components/FormComp";
 
 export const messageContext = createContext(null);
 messageContext.displayName = "messageProvider";
@@ -48,7 +49,8 @@ function App() {
       <div>
         <button onClick={() => setMount(!mount)}>Mount/Unmount</button>
       </div> */}
-      <ApiComp/>
+      {/* <ApiComp/> */}
+      <FormComp/>
     </div>
   );
 }
