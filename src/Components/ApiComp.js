@@ -9,47 +9,50 @@ import {
   Spinner
 } from "reactstrap";
 import RenderData from "./RenderData";
+import { useFetch } from "../utils/CustomHooks";
 const ApiComp = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [filter, setFilter] = useState("products");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  const filterData = (json) => {
-    // if(filter === "products") {
-    //   return json.products
-    // } else if( filter === "users") {
-    //   return json.users
-    // }
+  // const filterData = (json) => {
+  //   // if(filter === "products") {
+  //   //   return json.products
+  //   // } else if( filter === "users") {
+  //   //   return json.users
+  //   // }
 
-    // :TODO -- Add a new route and render its data
-    switch (filter) {
-      case "products":
-        return json.products;
-      case "users":
-        return json.users;
-      case "quotes":
-        return json.quotes;
-      default:
-        return;
-    }
-  };
+  //   // :TODO -- Add a new route and render its data
+  //   switch (filter) {
+  //     case "products":
+  //       return json.products;
+  //     case "users":
+  //       return json.users;
+  //     case "quotes":
+  //       return json.quotes;
+  //     default:
+  //       return;
+  //   }
+  // };
 
-  async function fetchData() {
-    setLoading(true);
-    const data = await fetch(`https://dummyjson.com/${filter}`);
-    const json = await data.json();
-    setData(filterData(json));
-    setLoading(false);
-  }
+  // async function fetchData() {
+  //   setLoading(true);
+  //   const data = await fetch(`https://dummyjson.com/${filter}`);
+  //   const json = await data.json();
+  //   setData(filterData(json));
+  //   setLoading(false);
+  // }
 
-  useEffect(() => {
-    fetchData();
-    // (async () => {
-    //   const data = await fetch("https://dummyjson.com/products");
-    //   const json = await data.json();
-    //   setData(json.products);
-    // })();
-  }, [filter]);
+  // useEffect(() => {
+  //   fetchData();
+  //   // (async () => {
+  //   //   const data = await fetch("https://dummyjson.com/products");
+  //   //   const json = await data.json();
+  //   //   setData(json.products);
+  //   // })();
+  // }, [filter]);
+
+  const {data, loading} = useFetch("https://dummyjson.com", filter)
 
   return (
     <div>

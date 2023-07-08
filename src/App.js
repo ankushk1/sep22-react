@@ -11,6 +11,9 @@ import { createContext, useState } from "react";
 import UseEffectComp from "./Components/UseEffectComp";
 import ApiComp from "./Components/ApiComp";
 import FormComp from "./Components/FormComp";
+import Signin from "./Components/Signin";
+import ApiComp2 from "./Components/ApiComp2";
+import ThemeComp from "./Components/ThemeComp";
 
 export const messageContext = createContext(null);
 messageContext.displayName = "messageProvider";
@@ -50,7 +53,11 @@ function App() {
         <button onClick={() => setMount(!mount)}>Mount/Unmount</button>
       </div> */}
       {/* <ApiComp/> */}
-      <FormComp/>
+      {/* <ApiComp2/> */}
+      {/* <FormComp className="mb-5"/>
+
+      <Signin className="mt-5"/> */}
+      <ThemeComp/>
     </div>
   );
 }

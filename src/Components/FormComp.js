@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import { Input } from "reactstrap";
+import { useFormHook } from "../utils/CustomHooks";
 
 const FormComp = () => {
-  const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    isActive: ""
-  });
+  // const [userInfo, setUserInfo] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  //   isActive: "",
+  //   selectVal: null
+  // });
 
-  const handleInputChange = (event, type = null) => {
-    if (type === "checkbox") {
-      setUserInfo({ ...userInfo, [event.target.name]: event.target.checked });
-    } else {
-      setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
-    }
-  };
+  // const handleInputChange = (event, type = null) => {
+  //   if (type === "checkbox") {
+  //     setUserInfo({ ...userInfo, [event.target.name]: event.target.checked });
+  //   } else {
+  //     setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
+  //   }
+  // };
+
+  const {inputVal, handleInputChange} = useFormHook();
 
   return (
     <div>
@@ -27,7 +31,7 @@ const FormComp = () => {
           type="text"
           className="w-50 form-control my-2"
           placeholder="First name"
-          value={userInfo.firstName}
+          value={inputVal.firstName}
           name="firstName"
           onChange={(event) => handleInputChange(event)}
         />
@@ -35,7 +39,7 @@ const FormComp = () => {
           type="text"
           className="w-50 form-control my-2"
           placeholder="Last name"
-          value={userInfo.lastName}
+          value={inputVal.lastName}
           name="lastName"
           onChange={(event) => handleInputChange(event)}
         />
@@ -43,7 +47,7 @@ const FormComp = () => {
           type="email"
           className="w-50 form-control my-2"
           placeholder="Email"
-          value={userInfo.email}
+          value={inputVal.email}
           name="email"
           onChange={(event) => handleInputChange(event)}
         />
@@ -51,26 +55,36 @@ const FormComp = () => {
           type="password"
           className="w-50 form-control my-2"
           placeholder="Password"
-          value={userInfo.password}
+          value={inputVal.password}
           name="password"
-          onChange={(event) =>
-            setUserInfo({ ...userInfo, password: event.target.value })
-          }
+          onChange={(event) => handleInputChange(event)}
         />
         <div>
           <input
             type="checkbox"
             id="cb-1"
             className="me-2"
-            checked={userInfo.isActive}
+            checked={inputVal.isActive}
             name="isActive"
             onChange={(e) =>
-              // setUserInfo({ ...userInfo, isActive: e.target.checked })
+              // setUserInfo({ ...inputVal, isActive: e.target.checked })
               handleInputChange(e, "checkbox")
             }
           />
           <label htmlFor="cb-1">Is Active</label>
         </div>
+
+        <select
+          name="selectVal"
+          className="w-50 form-control my-2"
+          value={inputVal.selectVal}
+          onChange={(event) => handleInputChange(event)}
+        >
+          <option value="" hidden>Select One</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
       </form>
     </div>
   );
