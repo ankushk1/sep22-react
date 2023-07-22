@@ -10,7 +10,7 @@ const Home = () => {
     // we hit api to check creds
     // get response
 
-    navigate('/about' , {
+    navigate('/contact?id=20&name=user1' , {
       state: "Message from Home.js",
       // replace: true
     })

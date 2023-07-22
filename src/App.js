@@ -14,6 +14,7 @@ import FormComp from "./Components/FormComp";
 import Signin from "./Components/Signin";
 import ApiComp2 from "./Components/ApiComp2";
 import ThemeComp from "./Components/ThemeComp";
+import TodoApp from "./Components/TodoApp";
 
 export const messageContext = createContext(null);
 messageContext.displayName = "messageProvider";
@@ -57,7 +58,9 @@ function App() {
       {/* <FormComp className="mb-5"/>
 
       <Signin className="mt-5"/> */}
-      <ThemeComp/>
+      {/* <ThemeComp/> */}
+
+      <TodoApp/>
     </div>
   );
 }
