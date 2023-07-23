@@ -15,6 +15,8 @@ import Signin from "./Components/Signin";
 import ApiComp2 from "./Components/ApiComp2";
 import ThemeComp from "./Components/ThemeComp";
 import TodoApp from "./Components/TodoApp";
+import UseMemoHook from "./Components/UseMemoHook";
+import UseCallbackHook from "./Components/UseCallbackHook";
 
 export const messageContext = createContext(null);
 messageContext.displayName = "messageProvider";
@@ -60,7 +62,9 @@ function App() {
       <Signin className="mt-5"/> */}
       {/* <ThemeComp/> */}
 
-      <TodoApp/>
+      {/* <TodoApp/> */}
+      {/* <UseMemoHook/> */}
+      <UseCallbackHook/>
     </div>
   );
 }
